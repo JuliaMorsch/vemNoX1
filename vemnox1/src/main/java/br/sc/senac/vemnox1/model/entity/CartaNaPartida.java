@@ -5,19 +5,19 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
+import lombok.Data;
 
 @Entity
+@Data
 public class CartaNaPartida {
-    
-    // ref https://www.baeldung.com/jpa-many-to-many
 
-    @EmbeddedId
+    @EmbeddedId // Usado para incorporar os campos da chave composta, usada para garantir mais unicidade nos registros
     private CartaNaPartidaPk id;
 
     @ManyToOne
-    @MapsId("idCarta")
+    @MapsId("idCarta") 
     @JoinColumn(name = "id_carta")
-    Carta carta;
+    Carta carta;    
 
     @ManyToOne
     @MapsId("idPartida")

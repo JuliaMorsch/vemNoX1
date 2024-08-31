@@ -17,7 +17,7 @@ import lombok.Data;
 public class Carta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idLong;
+    private Integer id;
     private String nome;
     private int forca;
     private int inteligencia;
