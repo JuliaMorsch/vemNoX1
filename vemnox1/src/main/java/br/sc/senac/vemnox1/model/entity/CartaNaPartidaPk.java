@@ -1,17 +1,18 @@
-// package br.sc.senac.vemnox1.model.entity;
+package br.sc.senac.vemnox1.model.entity;
 
-// import java.io.Serializable;
+import java.io.Serializable;
 
-// import jakarta.persistence.Column;
-// import jakarta.persistence.Embeddable;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 
-// // Classe com Chave Composta
-// @Embeddable
-// public class CartaNaPartidaPk implements Serializable {
-//     @Column(name = id_carta)
-//     Integer idCarta;
+// Classe com Chave Composta
 
-//     @Column(name = "id_partida")
-//     Integer idPartida;
-    
-// }
+@Embeddable
+public class CartaNaPartidaPk implements Serializable {
+    @Column(name = "id_carta")
+    Integer idCarta;
+
+    @Column(name = "id_partida")
+    Integer idPartida;
+
+}
