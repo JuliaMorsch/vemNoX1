@@ -18,4 +18,8 @@ public class CartaService {
         return cartaRepository.findAll();
     }
 
+    // public Carta findById(int id) throws VemNoX1Exception {
+    //     return cartaRepository.findById(id).orElseThrow(() -> new VemNoX1Exception("Carta não encontrada"));
+
+    // }
 }
