@@ -23,4 +23,9 @@ public class CartaService {
         return cartaRepository.findById(id).orElseThrow(() -> new VemNoX1Exception("Carta não encontrada"));
 
     }
+
+    // public Carta save(Carta carta) throws VemNoX1Exception {
+    //     validarSomatorioDosAtributos(carta);
+    //     return cartaRepository.save(carta);
+    // }
 }
