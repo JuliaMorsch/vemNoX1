@@ -24,8 +24,14 @@ public class CartaService {
 
     }
 
-    // public Carta save(Carta carta) throws VemNoX1Exception {
-    //     validarSomatorioDosAtributos(carta);
-    //     return cartaRepository.save(carta);
-    // }
+    public Carta save(Carta carta) throws VemNoX1Exception {
+        validarSomatorioDosAtributos(carta);
+        return cartaRepository.save(carta);
+    }
+
+    private void validarSomatorioDosAtributos(Carta carta) throws VemNoX1Exception {
+        if (carta.getTotalAtributos() > 10) {
+            throw new VemNoX1Exception("O somatório dos atributos da carta não pode ser maior que 10.");
+        }
+    }
 }
