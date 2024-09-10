@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import br.sc.senac.vemnox1.exception.VemNoX1Exception;
 import br.sc.senac.vemnox1.model.entity.Carta;
 import br.sc.senac.vemnox1.model.repository.CartaRepository;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import jakarta.websocket.server.PathParam;
 
 @Service
 public class CartaService {
@@ -33,5 +35,14 @@ public class CartaService {
         if (carta.getTotalAtributos() > 10) {
             throw new VemNoX1Exception("O somatório dos atributos da carta não pode ser maior que 10.");
         }
+    }
+
+    public Carta update(Carta carta) throws VemNoX1Exception{
+        validarSomatorioDosAtributos(carta);
+        return cartaRepository.save(carta);        
+    }
+
+    public void delete(int id) throws VemNoX1Exception {
+        cartaRepository.deleteById(id);
     }
 }
