@@ -2,10 +2,12 @@ package br.sc.senac.vemnox1.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -67,6 +69,10 @@ public class CartaController {
         return cartas;
     }
 
-
-
+    @Operation(summary = "Atualizar carta existente.", 
+                description = "Atualiza os dados de uma carta com base no seu ID.")
+    @PutMapping
+    public ResponseEntity<Carta> update(@Valid @RequestBody Carta carta) throws VemNoX1Exception {
+        return ResponseEntity.ok(cartaService.update(carta));
+    }
 }
