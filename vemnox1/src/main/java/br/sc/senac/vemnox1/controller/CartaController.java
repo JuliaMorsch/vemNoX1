@@ -3,6 +3,8 @@ package br.sc.senac.vemnox1.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,4 +48,13 @@ public class CartaController {
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
+    @Operation(summary = "Pesquisa carta por ID.",
+                description = "Busca uma carta específica pelo seu ID.")
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Carta> findById(@PathVariable int id) throws VemNoX1Exception {
+        Carta carta = cartaService.findById(id);
+        return ResponseEntity.ok(carta);
+    }
+
+
 }
