@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -70,9 +71,17 @@ public class CartaController {
     }
 
     @Operation(summary = "Atualizar carta existente.", 
-                description = "Atualiza os dados de uma carta com base no seu ID.")
+                description = "Atualiza os dados de uma carta.")
     @PutMapping
     public ResponseEntity<Carta> update(@Valid @RequestBody Carta carta) throws VemNoX1Exception {
         return ResponseEntity.ok(cartaService.update(carta));
+    }
+
+    @Operation(summary = "Deletar carta existente por ID.", 
+                description = "Remove uma carta pelo seu ID.")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable int id) throws VemNoX1Exception{
+        cartaService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
