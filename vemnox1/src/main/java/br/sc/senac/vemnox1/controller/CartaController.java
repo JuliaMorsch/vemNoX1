@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import java.util.List;
 import br.sc.senac.vemnox1.exception.VemNoX1Exception;
 import br.sc.senac.vemnox1.model.entity.Carta;
 import br.sc.senac.vemnox1.service.CartaService;
@@ -55,6 +55,18 @@ public class CartaController {
         Carta carta = cartaService.findById(id);
         return ResponseEntity.ok(carta);
     }
+
+    @Operation(summary = "Lista todas as cartas.",
+                description = "Retorna uma lista de todas as cartas cadastradas no sistema.",
+                responses = {
+                            @ApiResponse(responseCode = "200", description = "Lista de cartas retornada com sucesso.")
+                    })
+    @GetMapping
+    public List<Carta> listAll(){
+        List<Carta> cartas = cartaService.listAll();
+        return cartas;
+    }
+
 
 
 }
