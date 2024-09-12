@@ -1,9 +1,12 @@
 package br.sc.senac.vemnox1.model.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,20 +23,29 @@ public class Partida {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    // @ManyToOne
-    // @JoinColumn(name = "jogador_fk")
-    // private Jogador jogador;
+    @ManyToOne
+    @JoinColumn(name = "jogador_fk")
+    private Jogador jogador;
 
-    // @OneToMany(mappedBy = "partida")
-    // private List<CartaNaPartida> cartasJogador;
+    @OneToMany(mappedBy = "partida")
+    private List<CartaNaPartida> cartas = new ArrayList<>();
 
     private int roundsVencidosJogador;
     private int roundsVencidosCpu;
     private int roundsEmpatados;
+
+    @Enumerated(EnumType.STRING)
     // private Resultado resultado;
     private LocalDateTime data;
     private boolean jogouForca;
     private boolean jogouInteligencia;
     private boolean jogouVelocidade;
 
+    public List<CartaNaPartida> getCartasCpuDisponivies() {
+        return this.getCartas().stream().filter(c -> !c.isPertenceAoJogador()).filter(c -> !c.isUtilizada()).toList();
+    }
+
+    public List<CartaNaPartida> getCartasJogador() {
+        return this.getCartas().stream().filter(c -> c.isPertenceAoJogador()).toList();
+    }
 }
