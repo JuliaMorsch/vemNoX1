@@ -3,11 +3,13 @@ package br.sc.senac.vemnox1.model.entity;
 import java.time.LocalDate;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.ManyToAny;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
@@ -23,6 +25,10 @@ public class Carta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @ManyToAny
+    @JoinColumn(name = "id_colecao")
+    private Colecao colecao;
     
     @NotBlank(message = "O campo nome deve estar preenchido.")
     @Size(min = 3, max = 255)
