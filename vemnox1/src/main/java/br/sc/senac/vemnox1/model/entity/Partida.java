@@ -34,7 +34,7 @@ public class Partida {
     private int roundsVencidosCpu;
     private int roundsEmpatados;
 
-    @Enumerated(EnumType.STRING)
+    // @Enumerated(EnumType.STRING)
     // private Resultado resultado;
     private LocalDateTime data;
     private boolean jogouForca;
