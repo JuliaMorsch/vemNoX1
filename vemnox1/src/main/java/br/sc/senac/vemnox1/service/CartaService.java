@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 import br.sc.senac.vemnox1.exception.VemNoX1Exception;
 import br.sc.senac.vemnox1.model.entity.Carta;
 import br.sc.senac.vemnox1.model.repository.CartaRepository;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
-import jakarta.websocket.server.PathParam;
 
 @Service
 public class CartaService {
